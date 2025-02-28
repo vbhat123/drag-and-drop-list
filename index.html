@@ -18,21 +18,22 @@
             margin: 5px 0;
             background-color: #f4f4f4;
             border: 1px solid #ddd;
-            cursor: move;
+            cursor: grab;
         }
         li.dragging {
             opacity: 0.5;
+            background-color: #e0e0e0;
         }
     </style>
 </head>
 <body>
     <h1>Drag and Drop List</h1>
     <ul id="sortable-list">
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-        <li>Item 4</li>
-        <li>Item 5</li>
+        <li draggable="true">Item 1</li>
+        <li draggable="true">Item 2</li>
+        <li draggable="true">Item 3</li>
+        <li draggable="true">Item 4</li>
+        <li draggable="true">Item 5</li>
     </ul>
 
     <script>
@@ -40,6 +41,7 @@
 
         let draggingElement = null;
 
+        // Add event listeners for drag and drop
         list.addEventListener('dragstart', (e) => {
             draggingElement = e.target;
             e.target.classList.add('dragging');
@@ -59,6 +61,7 @@
             e.target.classList.remove('dragging');
         });
 
+        // Helper function to determine where to place the dragged element
         function getDragAfterElement(container, y) {
             const draggableElements = [...container.querySelectorAll('li:not(.dragging)')];
 
